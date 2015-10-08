@@ -10,7 +10,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tipoprecio")
 public class TipoPrecio implements java.io.Serializable {
-    private static final long serialVersionUID = 1L;
+   
+	
+	private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -19,13 +21,26 @@ public class TipoPrecio implements java.io.Serializable {
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
+    
+    @Column(name = "utilidad", nullable = false)
+    private Double utilidad;
 
-    public TipoPrecio() {
+    public Double getUtilidad() {
+		return utilidad;
+	}
+
+	public void setUtilidad(Double utilidad) {
+		this.utilidad = utilidad;
+	}
+
+	public TipoPrecio() {
     }
 
-    public TipoPrecio(String nombre) {
-        this.nombre = nombre;
-    }
+	public TipoPrecio(String nombre, Double utilidad) {
+		this.nombre = nombre;
+		this.utilidad = utilidad;
+	}
+   
 
     public Integer getId() {
         return this.id;
@@ -44,7 +59,7 @@ public class TipoPrecio implements java.io.Serializable {
     }
     @Override
     public String toString() {
-        return "TipoPrecio [id=" + id + ", nombre=" + nombre 
+        return "TipoPrecio [id=" + id + ", nombre=" + nombre + ", Utilidad="+utilidad
                 + "]";
     }
 

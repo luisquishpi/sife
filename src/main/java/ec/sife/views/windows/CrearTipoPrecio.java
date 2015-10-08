@@ -60,7 +60,7 @@ public class CrearTipoPrecio extends JFrame {
         JButton btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                TipoPrecio tipoPrecio =new TipoPrecio(txtNombre.getText());                
+                TipoPrecio tipoPrecio =new TipoPrecio(txtNombre.getText(),Double.parseDouble(txtUtilidad.getText()));                
                 TipoPrecioController tipoPrecioController=new TipoPrecioController();
                 tipoPrecioController.saveTipoPrecio(tipoPrecio);
                 System.out.println(tipoPrecio);
