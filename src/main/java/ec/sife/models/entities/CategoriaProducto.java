@@ -30,8 +30,8 @@ public class CategoriaProducto {
 	@Column(name = "dependencia", nullable = false)
 	private CategoriaProducto dependencia;
 
-	@Column(name = "escategoria", nullable = false)
-	private Boolean escategoria = false;
+	@Column(name = "contienecategoria", nullable = false)
+	private Boolean contienecategoria = true;
 
 	public Integer getId() {
 		return id;
@@ -58,16 +58,16 @@ public class CategoriaProducto {
 	}
 
 	public Boolean getEscategoria() {
-		return escategoria;
+		return contienecategoria;
 	}
 
-	public void setEscategoria(Boolean escategoria) {
-		this.escategoria = escategoria;
+	public void setEscategoria(Boolean contienecategoria) {
+		this.contienecategoria = contienecategoria;
 	}
 	
 	  public String toString() {
 	        return "CategoriaProducto [id=" + id + ", nombre=" + nombre + ", dependencia="+dependencia
-	                + "escategoria="+escategoria+"]";
+	                + "escategoria="+contienecategoria+"]";
 	    }
 
 }
