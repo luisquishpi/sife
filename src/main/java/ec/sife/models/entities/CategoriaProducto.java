@@ -9,9 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+
 @Entity
 @Table(name = "categoriaproducto")
 public class CategoriaProducto {
+
+	public CategoriaProducto() {
+		super();
+	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -58,5 +64,10 @@ public class CategoriaProducto {
 	public void setEscategoria(Boolean escategoria) {
 		this.escategoria = escategoria;
 	}
+	
+	  public String toString() {
+	        return "CategoriaProducto [id=" + id + ", nombre=" + nombre + ", dependencia="+dependencia
+	                + "escategoria="+escategoria+"]";
+	    }
 
 }
