@@ -14,15 +14,15 @@ public class CategoriaProductoController {
 		categoriaProductoDao = new DaoFactory().getCategoriaProductoDao();
 	}
 
-	public void saveTipoPrecio(CategoriaProducto categoriaProducto) {
+	public void saveCategoriaProducto(CategoriaProducto categoriaProducto) {
 		categoriaProductoDao.create(categoriaProducto);
 	}
 
-	public boolean existTipoPrecio(CategoriaProducto categoriaProducto) {
+	public boolean existCategoriaProducto(CategoriaProducto categoriaProducto) {
 		return categoriaProductoDao.read(categoriaProducto.getId()) != null;
 	}
 
-	public List<CategoriaProducto> TipoPrecioList() {
+	public List<CategoriaProducto> CategoriaProductoList() {
 		return categoriaProductoDao.findAll();
 	}
 
