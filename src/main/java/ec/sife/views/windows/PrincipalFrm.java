@@ -20,6 +20,7 @@ public class PrincipalFrm extends JFrame {
     private JPanel contentPane;
     private JDesktopPane dpContenedor;
     TipoPrecioFrm tipoPrecioFrm;
+    CategoriaProductoFrm  categoriaProductoFrm;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -34,9 +35,6 @@ public class PrincipalFrm extends JFrame {
         });
     }
 
-    /**
-     * Create the frame.
-     */
     public PrincipalFrm() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 600, 400);
@@ -53,8 +51,17 @@ public class PrincipalFrm extends JFrame {
         JMenuItem mntmProductos = new JMenuItem("Productos");
         mnProductos.add(mntmProductos);
         
-        JMenuItem mntmTipos = new JMenuItem("Tipos");
-        mnProductos.add(mntmTipos);
+        JMenuItem mntmTCategorias = new JMenuItem("Categorias");
+        mntmTCategorias.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if(categoriaProductoFrm==null || categoriaProductoFrm.isClosed()){
+        			categoriaProductoFrm=new CategoriaProductoFrm();
+                    dpContenedor.add(categoriaProductoFrm);
+                    categoriaProductoFrm.show();
+                }
+        	}
+        });
+        mnProductos.add(mntmTCategorias);
         
         JMenuItem mntmTipoDePrecios = new JMenuItem("Tipo de Precios");
         mntmTipoDePrecios.addActionListener(new ActionListener() {

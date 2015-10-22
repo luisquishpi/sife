@@ -35,8 +35,9 @@ public class CategoriaProductoController {
 		return DaoFactory.getFactory().getCategoriaProductoDao().read(selectedCategoriaProductoId);
 	}
 
-	public void updateCategoriaProducto(CategoriaProducto categoriaProducto) {
-		categoriaProductoDao.update(categoriaProducto);
+	public boolean updateCategoriaProducto(CategoriaProducto categoriaProducto) {
+		return categoriaProductoDao.update(categoriaProducto);
+		
 	}
 
 	public boolean delete(Integer id) {
