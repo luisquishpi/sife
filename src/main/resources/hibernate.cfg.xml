@@ -31,5 +31,6 @@
 
 		<!-- Mapping files -->
         <mapping class='ec.sife.models.entities.TipoPrecio' />
+        <mapping class='ec.sife.models.entities.CategoriaProducto' />
     </session-factory>
 </hibernate-configuration>
