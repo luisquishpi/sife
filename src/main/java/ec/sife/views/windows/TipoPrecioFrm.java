@@ -35,6 +35,7 @@ public class TipoPrecioFrm extends JInternalFrame {
     private JButton btnCancelar;
 
     public TipoPrecioFrm() {
+        setTitle("Tipo de Precios");
         crearControles();
         crearEventos();
 
