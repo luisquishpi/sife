@@ -43,7 +43,7 @@ public class CategoriaProductoController {
 	public boolean delete(Integer id) {
 		return categoriaProductoDao.deleteById(id);
 	}
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")	
 	public List<CategoriaProducto> CategoriaProductoList(Integer id) {
 		Session session=HibernateUtil.getSessionFactory().openSession();		
 		List<CategoriaProducto> lista = null;
@@ -68,4 +68,26 @@ public class CategoriaProductoController {
 		return lista;
 		
 	}
+		
+	public boolean existCategoriaProducto(String nombre) {
+        boolean existe = false;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            Query query = session.createQuery("from CategoriaProducto T WHERE T.nombre = :nombre and T.dependencia=:dependencia ");
+            query.setParameter("nombre", nombre);
+            if(!query.list().isEmpty()){
+                existe = true;
+            }
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (session.getTransaction() != null)
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return existe;
+    }
 }

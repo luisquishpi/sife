@@ -7,46 +7,48 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import ec.sife.models.daos.DaoFactory;
-import ec.sife.models.daos.TarifaIvaDao;
-import ec.sife.models.entities.TarifaIva;
+import ec.sife.models.daos.TarifaIceDao;
+import ec.sife.models.entities.TarifaIce;
 import ec.sife.utils.HibernateUtil;
 
-public class TarifaIvaController {
-	private TarifaIvaDao tarifaIvaDao;
+public class TarifaIceController {
 
-	public TarifaIvaController() {
-		tarifaIvaDao = new DaoFactory().getTarifaIvaDao();
+	private TarifaIceDao tarifaIceDao;
+
+	public TarifaIceController() {
+		tarifaIceDao = new DaoFactory().getTarifaIceDao();
 	}
 
-	public void saveTarifaIva(TarifaIva tarifaIva) {
+	public void saveTarifaIce(TarifaIce tarifaIce) {
 
-		tarifaIvaDao.create(tarifaIva);
+		tarifaIceDao.create(tarifaIce);
 
 	}
 
-	public boolean existTarifaIva(TarifaIva tarifaIva) {
-		return tarifaIvaDao.read(tarifaIva.getId()) != null;
+	public boolean existTarifaIce(TarifaIce tarifaIce) {
+		return tarifaIceDao.read(tarifaIce.getId()) != null;
 	}
 
-	public List<TarifaIva> TarifaIvaList() {
-		return tarifaIvaDao.findAll();
+	public List<TarifaIce> TarifaIceList() {
+		return tarifaIceDao.findAll();
 	}
 
-	public void update(TarifaIva tarifaIva) {
-		tarifaIvaDao.update(tarifaIva);
+	public void update(TarifaIce tarifaIce) {
+		tarifaIceDao.update(tarifaIce);
 	}
 
 	public boolean delete(Integer id) {
-		return tarifaIvaDao.deleteById(id);
+		return tarifaIceDao.deleteById(id);
 	}
 
-	public boolean existTarifaIva(String codigo) {
+	public boolean existTarifaIce(String codigo) {
 		boolean existe = false;
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 
+			System.out.println("Valoraaaa"+ codigo  );
 			session.beginTransaction();
-			Query query = session.createQuery("from TarifaIva T WHERE T.codigo = :codigo");
+			Query query = session.createQuery("from TarifaIce T WHERE T.codigo = :codigo");
 			query.setParameter("codigo", codigo);
 			if (!query.list().isEmpty()) {
 				existe = true;

@@ -22,6 +22,18 @@ public class DaoFactory {
 		return new CategoriaProductoDao();
 	}
 
+	public TipoClienteDao getTipoClienteDao() {
+		return new TipoClienteDao();
+	}
+
+	public PersonaDao getPersonaDao() {
+		return new PersonaDao();
+	}
+
+	public TarifaIceDao getTarifaIceDao() {
+		return new TarifaIceDao();
+	}
+
 	public ProductoDao getProductoDao() {
 		return new ProductoDao();
 	}

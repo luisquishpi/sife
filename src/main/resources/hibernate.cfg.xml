@@ -32,7 +32,15 @@
 		<!-- Mapping files -->
         <mapping class='ec.sife.models.entities.TipoPrecio' />
         <mapping class='ec.sife.models.entities.CategoriaProducto' />
+<<<<<<< HEAD
         <mapping class='ec.sife.models.entities.Producto' />
         <mapping class='ec.sife.models.entities.PrecioProducto' />
+=======
+        <mapping class='ec.sife.models.entities.TipoCliente' />
+        <mapping class='ec.sife.models.entities.TipoIdentificacionPersona' />
+        <mapping class='ec.sife.models.entities.Persona' />
+         <mapping class='ec.sife.models.entities.TarifaIva' />
+           <mapping class='ec.sife.models.entities.TarifaIce' />
+>>>>>>> branch 'develop' of https://github.com/luisquishpi/sife
     </session-factory>
 </hibernate-configuration>

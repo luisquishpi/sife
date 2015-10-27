@@ -9,34 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tarifaiva")
+@Table(name = "tipocliente")
 
-public class TarifaIva {
+public class TipoCliente implements java.io.Serializable{
 	
+	private static final long serialVersionUID = 1L;
 
-
-    public TarifaIva(String nombre, String codigo) {
-		
-    	this.id=null;
-		this.nombre = nombre;
-		this.codigo = codigo;
-	}
-
-	public TarifaIva() {
-		
-	}
-
-	@Id
+    @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
     
-	@Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-    
-    @Column(name = "codigo", nullable = false)
-    private String codigo;
-    
 
     public Integer getId() {
 		return id;
@@ -54,18 +39,20 @@ public class TarifaIva {
 		this.nombre = nombre;
 	}
 
-	public String getCodigo() {
-		return codigo;
-	}
+	
+	public TipoCliente() {
+    }
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public TipoCliente(String nombre) {
+		this.id=null;
+		this.nombre = nombre;
+	
 	}
-
+	
 	 @Override
 	    public String toString() {
-	        return "TarifaIva [id=" + id + ", nombre=" + nombre + ", codigo="+codigo
+	        return "TipoCliente [id=" + id + ", nombre=" + nombre
 	                + "]";
-	    }
-
+	    }  	
+	
 }
