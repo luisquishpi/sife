@@ -22,4 +22,19 @@ public class DaoFactory {
 		return new CategoriaProductoDao();
 	}
 
+	public ProductoDao getProductoDao() {
+		return new ProductoDao();
+	}
+
+	public PrecioProductoDao getPrecioProducto() {
+		return new PrecioProductoDao();
+	}
+
+	public TarifaIvaDao getTarifaIvaDao() {
+		return new TarifaIvaDao();
+	}
+
+	public TipoIdentificacionPersonaDao getTipoIdentificacionPersonaDao() {
+		return new TipoIdentificacionPersonaDao();
+	}
 }
