@@ -40,7 +40,6 @@ public class CrearPersonaFrm extends JInternalFrame {
 	private JTextField txtIdentificacion;
 	private JButton BtnGuardar;
 	private PersonaController  personaController;
-	private TipoIdentificacionPersonaController tipoIdentificacionPersonaCotroller;
 	private JButton btnCancelar;
 	private JButton btnNuevo;
 
@@ -164,7 +163,7 @@ public class CrearPersonaFrm extends JInternalFrame {
 		
 		JLabel lblTipoDeIdentificaci = new JLabel("Tipo de Identificación");
 		
-		cmbTipoIdentificacion = new JComboBox();
+		cmbTipoIdentificacion = new JComboBox<TipoIdentificacionPersona>();
 		
 		JLabel lblRaznSocial = new JLabel("Razón Social");
 		

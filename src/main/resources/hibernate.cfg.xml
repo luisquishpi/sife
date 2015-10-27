@@ -3,8 +3,8 @@
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name='connection.driver_class'>com.mysql.jdbc.Driver</property>
+	<session-factory>
+		<property name='connection.driver_class'>com.mysql.jdbc.Driver</property>
 		<property name='connection.url'>jdbc:mysql://localhost:3306/sife</property>
 		<property name='connection.username'>root</property>
 		<property name='connection.password'></property>
@@ -25,22 +25,19 @@
 
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">update</property>
-		
+
 		<!-- Automtic validation -->
 		<property name="javax.persistence.validation.mode">none</property>
 
 		<!-- Mapping files -->
-        <mapping class='ec.sife.models.entities.TipoPrecio' />
-        <mapping class='ec.sife.models.entities.CategoriaProducto' />
-<<<<<<< HEAD
-        <mapping class='ec.sife.models.entities.Producto' />
-        <mapping class='ec.sife.models.entities.PrecioProducto' />
-=======
-        <mapping class='ec.sife.models.entities.TipoCliente' />
-        <mapping class='ec.sife.models.entities.TipoIdentificacionPersona' />
-        <mapping class='ec.sife.models.entities.Persona' />
-         <mapping class='ec.sife.models.entities.TarifaIva' />
-           <mapping class='ec.sife.models.entities.TarifaIce' />
->>>>>>> branch 'develop' of https://github.com/luisquishpi/sife
-    </session-factory>
+		<mapping class='ec.sife.models.entities.TipoPrecio' />
+		<mapping class='ec.sife.models.entities.CategoriaProducto' />
+		<mapping class='ec.sife.models.entities.Producto' />
+		<mapping class='ec.sife.models.entities.PrecioProducto' />
+		<mapping class='ec.sife.models.entities.TipoCliente' />
+		<mapping class='ec.sife.models.entities.TipoIdentificacionPersona' />
+		<mapping class='ec.sife.models.entities.Persona' />
+		<mapping class='ec.sife.models.entities.TarifaIva' />
+		<mapping class='ec.sife.models.entities.TarifaIce' />
+	</session-factory>
 </hibernate-configuration>

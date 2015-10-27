@@ -108,17 +108,17 @@ public class TipoIdentificacionPersonaFrm extends JInternalFrame {
 		
 		btnNuevo = new JButton("Nuevo");
 		
-		btnNuevo.setIcon(new ImageIcon("C:\\Users\\Celia\\Desktop\\workspacemars\\sife\\target\\classes\\ec\\sife\\images\\new.png"));
+		btnNuevo.setIcon(new ImageIcon(TipoIdentificacionPersonaFrm.class.getResource("/ec/sife/images/new.png")));
 		panel.add(btnNuevo);
 		
 		btnGuardar = new JButton("Guardar");
 		
-		btnGuardar.setIcon(new ImageIcon(TipoPrecioFrm.class.getResource("/ec/sife/images/save.png")));
+		btnGuardar.setIcon(new ImageIcon(TipoIdentificacionPersonaFrm.class.getResource("/ec/sife/images/save.png")));
 		panel.add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
 		
-		btnCancelar.setIcon(new ImageIcon("C:\\Users\\Celia\\Desktop\\workspacemars\\sife\\target\\classes\\ec\\sife\\images\\cancel.png"));
+		btnCancelar.setIcon(new ImageIcon(TipoIdentificacionPersonaFrm.class.getResource("/ec/sife/images/cancel.png")));
 		panel.add(btnCancelar);
 		
 				
