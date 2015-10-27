@@ -22,6 +22,10 @@ public class TarifaIva {
 		this.codigo = codigo;
 	}
 
+	public TarifaIva() {
+		
+	}
+
 	@Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true, nullable = false)

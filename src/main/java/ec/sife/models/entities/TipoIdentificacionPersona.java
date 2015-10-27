@@ -17,7 +17,6 @@ public class TipoIdentificacionPersona {
 	public TipoIdentificacionPersona() {
 	}
 
-	//private Persona persona;
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -65,14 +64,7 @@ public class TipoIdentificacionPersona {
 		this.codigo = codigo;
 
 	}
-	//@OneToOne(fetch = FetchType.LAZY, mappedBy = "tipoidentificacionpersoa", cascade = CascadeType.ALL)
-	//public Persona getPersona() {
-		//return this.persona;
-	//}
-
-	//public void setPersona(Persona persona) {
-		//this.persona = persona;
-	//}
+	
 
 	@Override
 	public String toString() {

@@ -22,7 +22,6 @@ public class TarifaIvaFrm extends JInternalFrame {
 	private JTextField txtCodigo;
 	private JTextField txtNombre;
 	private JButton btnGuardar;
-	private JLabel lblId;
 	private JButton btnCancelar;
 	private JButton btnNuevo;
 
@@ -35,7 +34,7 @@ public class TarifaIvaFrm extends JInternalFrame {
 
 	private void limpiarcampos() {
 
-		lblId.setText("0");
+	
 		txtNombre.setText("");
 		txtCodigo.setText("");
 		txtCodigo.requestFocus();
@@ -68,7 +67,7 @@ public class TarifaIvaFrm extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "No deje campos vacíos");
 					return;
 				}
-				if (lblId.getText().toString() == "0") {
+				
 
 					TarifaIva tarifaIva = new TarifaIva(txtNombre.getText(), txtCodigo.getText());
 					TarifaIvaController tarifaIvaController = new TarifaIvaController();
@@ -85,13 +84,13 @@ public class TarifaIvaFrm extends JInternalFrame {
 					} else {
 						JOptionPane.showMessageDialog(null, "Error al guardar, revise los datos");
 					}
-				}
+				
 			}
 		});
 	}
 
 	private void crearControles() {
-		setBounds(100, 100, 450, 171);
+		setBounds(100, 100, 450, 212);
 
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.SOUTH);
@@ -118,37 +117,43 @@ public class TarifaIvaFrm extends JInternalFrame {
 
 		JLabel label_1 = new JLabel("Nombre");
 
-		lblId = new JLabel("0");
-
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
 
 		txtCodigo = new JTextField();
 		txtCodigo.setColumns(10);
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING).addGap(0, 434, Short.MAX_VALUE)
-				.addGroup(gl_panel_1.createSequentialGroup().addGap(19)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_1.createSequentialGroup().addComponent(label)
-										.addPreferredGap(ComponentPlacement.UNRELATED))
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addGap(19)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(txtCodigo, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(label)
 								.addGroup(gl_panel_1.createSequentialGroup()
-										.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-										.addGap(2)))
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addComponent(lblId)
-								.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtCodigo, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-						.addGap(171)));
-		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGap(0, 119, Short.MAX_VALUE)
-				.addGroup(gl_panel_1.createSequentialGroup().addGap(6).addComponent(lblId)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(label).addComponent(
-								txtCodigo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE).addComponent(label_1).addComponent(
-								txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(35, Short.MAX_VALUE)));
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addComponent(label_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))))
+							.addGap(362))))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(6)
+					.addComponent(label)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtCodigo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(label_1)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(35, Short.MAX_VALUE))
+		);
 		panel_1.setLayout(gl_panel_1);
 
 	}

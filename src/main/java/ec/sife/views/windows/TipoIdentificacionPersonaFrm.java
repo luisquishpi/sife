@@ -27,7 +27,6 @@ public class TipoIdentificacionPersonaFrm extends JInternalFrame {
 	private JButton btnNuevo;
 	private JButton btnGuardar;
 	private JButton btnCancelar;
-	private JLabel lblId;
 
 	
 	public TipoIdentificacionPersonaFrm() {
@@ -40,7 +39,7 @@ public class TipoIdentificacionPersonaFrm extends JInternalFrame {
 	private void limpiarcampos() {
 				     
 
-		lblId.setText("0");
+		
 		txtNombre.setText("");
 		txtCodigo.setText("");
 		
@@ -72,7 +71,7 @@ public class TipoIdentificacionPersonaFrm extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "No deje campos vacíos");
 					return;
 				}
-				if (lblId.getText().toString() == "0") {
+				
 
 					TipoIdentificacionPersona tipoIdentificacionPersona= new TipoIdentificacionPersona(txtNombre.getText(),txtCodigo.getText());
 					TipoIdentificacionPersonaController tipoIdentificacionPersonaController=new TipoIdentificacionPersonaController();
@@ -90,7 +89,7 @@ public class TipoIdentificacionPersonaFrm extends JInternalFrame {
 		                } else {
 		                    JOptionPane.showMessageDialog(null, "Error al guardar, revise los datos");
 		                }						
-				}			
+						
 				
 			}
 		});
@@ -135,40 +134,35 @@ public class TipoIdentificacionPersonaFrm extends JInternalFrame {
 		
 		txtCodigo = new JTextField();
 		txtCodigo.setColumns(10);
-		
-		lblId = new JLabel("0");
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
 					.addGap(19)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(lblCodigo)
-							.addPreferredGap(ComponentPlacement.UNRELATED))
-						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-							.addGap(2)))
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblId)
-						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtCodigo, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-					.addGap(171))
+							.addContainerGap())
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(txtCodigo, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addComponent(lblCodigo)))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(6)
-					.addComponent(lblId)
+					.addComponent(lblCodigo)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCodigo)
-						.addComponent(txtCodigo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_1)
-						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(35, Short.MAX_VALUE))
+					.addComponent(txtCodigo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+					.addComponent(label_1)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
 		

@@ -24,11 +24,11 @@ public class TarifaIvaController {
 
 	}
 
-	public boolean existTipoCliente(TarifaIva tarifaIva) {
+	public boolean existTarifaIva(TarifaIva tarifaIva) {
 		return tarifaIvaDao.read(tarifaIva.getId()) != null;
 	}
 
-	public List<TarifaIva> TipoClienteList() {
+	public List<TarifaIva> TarifaIvaList() {
 		return tarifaIvaDao.findAll();
 	}
 

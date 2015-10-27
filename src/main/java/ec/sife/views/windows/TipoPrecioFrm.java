@@ -118,7 +118,7 @@ public class TipoPrecioFrm extends JInternalFrame {
         panel.add(btnCancelar);
 
         JPanel panel_1 = new JPanel();
-        getContentPane().add(panel_1, BorderLayout.CENTER);
+        getContentPane().add(panel_1, BorderLayout.NORTH);
 
         JLabel label = new JLabel("Nombre");
 
