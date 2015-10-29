@@ -10,35 +10,33 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tarifaiva")
-
 public class TarifaIva {
-	
-
-
-    public TarifaIva(String nombre, String codigo) {
-		
-    	this.id=null;
-		this.nombre = nombre;
-		this.codigo = codigo;
-	}
 
 	public TarifaIva() {
-		
+	}
+
+	public TarifaIva(String nombre, String codigo, Double valor) {
+		this.id = null;
+		this.nombre = nombre;
+		this.codigo = codigo;
+		this.valor = valor;
 	}
 
 	@Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Integer id;
-    
-	@Column(name = "nombre", nullable = false)
-    private String nombre;
-    
-    @Column(name = "codigo", nullable = false)
-    private String codigo;
-    
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Integer id;
 
-    public Integer getId() {
+	@Column(name = "nombre", nullable = false)
+	private String nombre;
+
+	@Column(name = "codigo", nullable = false)
+	private String codigo;
+
+	@Column(name = "valor", nullable = false)
+	private Double valor;
+
+	public Integer getId() {
 		return id;
 	}
 
@@ -62,10 +60,17 @@ public class TarifaIva {
 		this.codigo = codigo;
 	}
 
-	 @Override
-	    public String toString() {
-	        return "TarifaIva [id=" + id + ", nombre=" + nombre + ", codigo="+codigo
-	                + "]";
-	    }
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
 
 }

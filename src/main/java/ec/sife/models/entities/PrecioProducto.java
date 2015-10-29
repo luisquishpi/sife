@@ -41,6 +41,10 @@ public class PrecioProducto {
 	@Transient
 	private TarifaIce tarifaIce;
 
+	public PrecioProducto() {
+
+	}
+
 	public PrecioProducto(Double porcentajeUtilidad, Double precioBruto, Double utilidad, Producto producto,
 			TipoPrecio tipoPrecio, TarifaIva tarifaIva, TarifaIce tarifaIce) {
 		super();
