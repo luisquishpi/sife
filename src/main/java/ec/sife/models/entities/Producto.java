@@ -27,9 +27,6 @@ public class Producto {
 	@Column(name = "codigo", nullable = false)
 	private String codigo;
 
-	@Column(name = "peso", nullable = false)
-	private Double peso = 0.0;
-
 	@Column(name = "unidadMedida", nullable = false)
 	private UnidadeMedida unidadMedida;
 
@@ -87,14 +84,6 @@ public class Producto {
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}
-
-	public Double getPeso() {
-		return peso;
-	}
-
-	public void setPeso(Double peso) {
-		this.peso = peso;
 	}
 
 	public UnidadeMedida getUnidadMedida() {
