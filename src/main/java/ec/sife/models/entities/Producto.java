@@ -48,6 +48,9 @@ public class Producto {
 	@Column(name = "stockMinimo", nullable = false)
 	private Double stockMinimo = 0.0;
 
+	@Column(name = "descuento", nullable = false)
+	private Double descuento = 0.0;
+
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
 	private CategoriaProducto categoriaProducto;
 
@@ -144,4 +147,29 @@ public class Producto {
 	public void setStockMinimo(Double stockMinimo) {
 		this.stockMinimo = stockMinimo;
 	}
+
+	public TarifaIva getTarifaIva() {
+		return tarifaIva;
+	}
+
+	public void setTarifaIva(TarifaIva tarifaIva) {
+		this.tarifaIva = tarifaIva;
+	}
+
+	public TarifaIce getTarifaIce() {
+		return tarifaIce;
+	}
+
+	public void setTarifaIce(TarifaIce tarifaIce) {
+		this.tarifaIce = tarifaIce;
+	}
+
+	public Double getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(Double descuento) {
+		this.descuento = descuento;
+	}
+
 }

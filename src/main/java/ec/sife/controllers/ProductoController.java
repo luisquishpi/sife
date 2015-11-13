@@ -48,7 +48,7 @@ public class ProductoController {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery("from TipoPrecio T WHERE T.codigo = :codigo");
+			Query query = session.createQuery("from Producto T WHERE T.codigo = :codigo");
 			query.setParameter("codigo", codigo);
 			if (!query.list().isEmpty()) {
 				return productoReturn;
