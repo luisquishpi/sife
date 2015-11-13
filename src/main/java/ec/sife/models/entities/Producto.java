@@ -149,5 +149,10 @@ public class Producto {
 	public void setDescuento(Double descuento) {
 		this.descuento = descuento;
 	}
+	@Override
+    public String toString() {
+        return "Producto [id=" + id + ", nombre=" + nombre + ", codigo="+codigo
+                + "]";
+    }
 
 }
