@@ -24,9 +24,9 @@ public class Producto {
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
-	@Column(name = "codigoBarra", nullable = false)
-	private String codigoBarra;
-	
+	@Column(name = "codigo", nullable = false)
+	private String codigo;
+
 	@Column(name = "peso", nullable = false)
 	private Double peso = 0.0;
 
@@ -50,10 +50,10 @@ public class Producto {
 
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
 	private CategoriaProducto categoriaProducto;
-	
+
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
 	private TarifaIva tarifaIva;
-	
+
 	@ManyToOne(cascade = CascadeType.REFRESH, optional = false)
 	private TarifaIce tarifaIce;
 
@@ -81,14 +81,14 @@ public class Producto {
 		this.categoriaProducto = categoriaProducto;
 	}
 
-	public String getCodigoBarra() {
-		return codigoBarra;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setCodigoBarra(String codigoBarra) {
-		this.codigoBarra = codigoBarra;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
-	
+
 	public Double getPeso() {
 		return peso;
 	}
