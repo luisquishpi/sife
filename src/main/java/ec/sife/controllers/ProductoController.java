@@ -51,6 +51,7 @@ public class ProductoController {
 			Query query = session.createQuery("from Producto T WHERE T.codigo = :codigo");
 			query.setParameter("codigo", codigo);
 			if (!query.list().isEmpty()) {
+				productoReturn=(Producto)query.list().get(0);
 				return productoReturn;
 			}
 			session.getTransaction().commit();
