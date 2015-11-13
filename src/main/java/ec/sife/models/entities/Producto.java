@@ -39,9 +39,6 @@ public class Producto {
 	@Column(name = "puedeFraccionar", nullable = false)
 	private Boolean puedeFraccionar = false;
 
-	@Column(name = "cantidad", nullable = false)
-	private Double cantidad;
-
 	@Column(name = "costo", nullable = false)
 	private Double costo;
 
@@ -122,14 +119,6 @@ public class Producto {
 
 	public void setPuedeFraccionar(Boolean puedeFraccionar) {
 		this.puedeFraccionar = puedeFraccionar;
-	}
-
-	public Double getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(Double cantidad) {
-		this.cantidad = cantidad;
 	}
 
 	public Double getCosto() {
