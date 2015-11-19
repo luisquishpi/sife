@@ -8,7 +8,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,7 +30,7 @@ import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
 
-public class CategoriaProductoFrm extends JInternalFrame {
+public class CategoriaProductoMantenimientoFrm extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -51,19 +50,26 @@ public class CategoriaProductoFrm extends JInternalFrame {
 	private JPanel panel_2;
 	private JTextField txtNombre;
 	private JTextField txtDependencia;
+	private CategoriaProducto categoriaProducto;
 
-	public CategoriaProductoFrm() {
-		setTitle("Categorías de Productos");
+	public CategoriaProductoMantenimientoFrm() {
 		setIconifiable(true);
 		setClosable(true);
+		setTitle("Categorías de Productos");
 		crearControles();
 		crearEventos();
 		cargarArbolCategoriaProductos();
-		
+
+	}
+
+	public void cargarArbolCategoriaProductos() {
+		DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Categorías de Productos");
+		modelo = new DefaultTreeModel(raiz);
+		getHojas(raiz, "0");
+		tree.setModel(modelo);
 	}
 
 	public void getHojas(DefaultMutableTreeNode raiz, String id) {
-
 		CategoriaProductoController categoriaProductoController = new CategoriaProductoController();
 		List<CategoriaProducto> lista;
 		lista = categoriaProductoController.CategoriaProductoList(Integer.parseInt(id));
@@ -73,13 +79,6 @@ public class CategoriaProductoFrm extends JInternalFrame {
 			getHojas(hoja, lista.get(i).getId().toString());
 			raiz.add(hoja);
 		}
-	}
-
-	public void cargarArbolCategoriaProductos() {
-		DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Categorías de Productos");
-		modelo = new DefaultTreeModel(raiz);
-		getHojas(raiz, "0");
-		tree.setModel(modelo);
 	}
 
 	private void limpiarcampos() {
@@ -104,13 +103,11 @@ public class CategoriaProductoFrm extends JInternalFrame {
 		DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 		if (nodo.getLevel() == 0) {
 			lblDepen.setText("0");
-			txtDependencia.setText("Categorias                          ");
+			txtDependencia.setText("Categorias");
 		} else {
 			lblDepen.setText(lblId.getText());
 			txtDependencia.setText(txtNombre.getText());
-
 		}
-
 	}
 
 	private void agregarNodoArbol(CategoriaProducto categoriaProducto) {
@@ -134,13 +131,14 @@ public class CategoriaProductoFrm extends JInternalFrame {
 				btnGuardar.setIcon(new ImageIcon(TipoPrecioFrm.class.getResource("/ec/sife/images/update.png")));
 				DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (nodo.getLevel() != 0) {
-					CategoriaProducto catProducto = (CategoriaProducto) nodo.getUserObject();
-					lblId.setText(catProducto.getId().toString());
-					txtNombre.setText(catProducto.getNombre());
+					categoriaProducto = (CategoriaProducto) nodo.getUserObject();
+					lblId.setText(categoriaProducto.getId().toString());
+					txtNombre.setText(categoriaProducto.getNombre());
 					txtDependencia.setText(nodo.getParent().toString());
-					lblDepen.setText(catProducto.getDependencia().toString());
-					chbxContieneProductos.setSelected(catProducto.getContieneProductos());
+					lblDepen.setText(categoriaProducto.getDependencia().toString());
+					chbxContieneProductos.setSelected(categoriaProducto.getContieneProductos());
 					System.out.println("raiz " + nodo.getParent());
+					System.out.println("Cate: " + categoriaProducto);
 				}
 			}
 		});
@@ -154,16 +152,13 @@ public class CategoriaProductoFrm extends JInternalFrame {
 				}
 			}
 		});
-
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				verificarUbicacionNodoNuevo();
 				limpiarcampos();
-				;
 			}
 
 		});
-
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!isCamposLlenos()) {
@@ -202,8 +197,8 @@ public class CategoriaProductoFrm extends JInternalFrame {
 	}
 
 	private void crearControles() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 645, 322);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 601, 322);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -212,94 +207,86 @@ public class CategoriaProductoFrm extends JInternalFrame {
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
-		
+
 		panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-				btnNuevo = new JButton("Nuevo");
-				panel_1.add(btnNuevo);
-				btnNuevo.setIcon(new ImageIcon(CategoriaProductoFrm.class.getResource("/ec/sife/images/new.png")));
-		
-				btnGuardar = new JButton("Guardar");
-				panel_1.add(btnGuardar);
-				btnGuardar.setIcon(new ImageIcon(CategoriaProductoFrm.class.getResource("/ec/sife/images/save.png")));
+		btnNuevo = new JButton("Nuevo");
+		panel_1.add(btnNuevo);
+		btnNuevo.setIcon(new ImageIcon(CategoriaProductoMantenimientoFrm.class.getResource("/ec/sife/images/new.png")));
+
+		btnGuardar = new JButton("Guardar");
+		panel_1.add(btnGuardar);
+		btnGuardar.setIcon(
+				new ImageIcon(CategoriaProductoMantenimientoFrm.class.getResource("/ec/sife/images/save.png")));
 		btnCancelar = new JButton("Cancelar");
 		panel_1.add(btnCancelar);
-		btnCancelar.setIcon(new ImageIcon(CategoriaProductoFrm.class.getResource("/ec/sife/images/cancel.png")));
-		
+		btnCancelar.setIcon(
+				new ImageIcon(CategoriaProductoMantenimientoFrm.class.getResource("/ec/sife/images/cancel.png")));
+
 		panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.CENTER);
-		
-				lblId = new JLabel("0");
-				lblId.setForeground(Color.DARK_GRAY);
-				lblId.setVisible(false);
-		
-				chbxContieneProductos = new JCheckBox("Contiene productos");
+
+		lblId = new JLabel("0");
+		lblId.setForeground(Color.DARK_GRAY);
+		lblId.setVisible(false);
+
+		chbxContieneProductos = new JCheckBox("Contiene productos");
 		lblDepen = new JLabel("0");
 		lblDepen.setVisible(false);
-		
-				lblNombre = new JLabel("Nombre:");
-		
-				lblDependencia = new JLabel("Dependencia:");
-		
+
+		lblNombre = new JLabel("Nombre:");
+
+		lblDependencia = new JLabel("Dependencia:");
+
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		
+
 		txtDependencia = new JTextField();
 		txtDependencia.setEditable(false);
 		txtDependencia.setColumns(10);
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblDependencia, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(385))
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(chbxContieneProductos, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblNombre, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap())
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(62)
-					.addComponent(lblDepen, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-					.addGap(56)
-					.addComponent(lblId, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(278, Short.MAX_VALUE))
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(txtNombre, Alignment.LEADING)
-						.addComponent(txtDependencia, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
-					.addContainerGap(147, Short.MAX_VALUE))
-		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNombre)
-					.addGap(3)
-					.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblDependencia)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtDependencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(9)
-					.addComponent(chbxContieneProductos)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDepen)
-						.addComponent(lblId))
-					.addContainerGap(85, Short.MAX_VALUE))
-		);
+		gl_panel_2.setHorizontalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup().addContainerGap()
+						.addComponent(lblDependencia, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
+						.addGap(385))
+				.addGroup(gl_panel_2.createSequentialGroup().addContainerGap()
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(chbxContieneProductos, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblNombre, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addContainerGap())
+				.addGroup(gl_panel_2.createSequentialGroup().addGap(62)
+						.addComponent(lblDepen, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE).addGap(56)
+						.addComponent(lblId, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(278, Short.MAX_VALUE))
+				.addGroup(gl_panel_2.createSequentialGroup().addContainerGap()
+						.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(txtNombre, Alignment.LEADING).addComponent(txtDependencia,
+										Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
+						.addContainerGap(147, Short.MAX_VALUE)));
+		gl_panel_2.setVerticalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup().addContainerGap().addComponent(lblNombre).addGap(3)
+						.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(lblDependencia)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(txtDependencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(9).addComponent(chbxContieneProductos)
+						.addPreferredGap(ComponentPlacement.RELATED).addGroup(gl_panel_2
+								.createParallelGroup(Alignment.BASELINE).addComponent(lblDepen).addComponent(lblId))
+				.addContainerGap(85, Short.MAX_VALUE)));
 		panel_2.setLayout(gl_panel_2);
 
 		scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.WEST);
 		scrollPane.setPreferredSize(new Dimension(200, 200));
-		
+
 		tree = new JTree();
 		scrollPane.setViewportView(tree);
 	}
+
 }

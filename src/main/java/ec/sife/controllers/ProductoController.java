@@ -31,8 +31,8 @@ public class ProductoController {
 		return productoDao.findAll();
 	}
 
-	public Producto getProducto(int selectedProductoId) {
-		return DaoFactory.getFactory().getProductoDao().read(selectedProductoId);
+	public Producto getProducto(int id) {
+		return DaoFactory.getFactory().getProductoDao().read(id);
 	}
 
 	public boolean update(Producto producto) {
@@ -44,15 +44,13 @@ public class ProductoController {
 	}
 
 	public Producto getProducto(String codigo) {
-		Producto productoReturn = new Producto();
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery("from Producto T WHERE T.codigo = :codigo");
 			query.setParameter("codigo", codigo);
 			if (!query.list().isEmpty()) {
-				productoReturn=(Producto)query.list().get(0);
-				return productoReturn;
+				return (Producto) query.list().get(0);
 			}
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
