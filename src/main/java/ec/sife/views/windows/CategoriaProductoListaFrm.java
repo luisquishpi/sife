@@ -63,8 +63,7 @@ public class CategoriaProductoListaFrm extends javax.swing.JDialog {
 				DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (nodo.getLevel() != 0) {
 					categoriaProducto = (CategoriaProducto) nodo.getUserObject();
-					System.out.println("raiz " + nodo.getParent());
-					System.out.println("Cate: " + categoriaProducto);
+					System.out.println("Categoría seleccionado: " + categoriaProducto);
 				}
 			}
 		});

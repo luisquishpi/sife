@@ -19,9 +19,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -52,7 +52,7 @@ import ec.sife.models.entities.TipoPrecio;
 import ec.sife.utils.Formatos;
 import ec.sife.utils.UnidadeMedida;
 
-public class ProductoFrm extends JInternalFrame {
+public class ProductoFrm extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNombre;
 	private JTextField txtCategoria;
@@ -69,7 +69,8 @@ public class ProductoFrm extends JInternalFrame {
 	private Object[] filaDatos;
 	private CategoriaProductoListaFrm categoriaProductoListaFrm = new CategoriaProductoListaFrm();
 	private CategoriaProducto categoriaProducto;
-	private Producto producto = new Producto();
+	private Producto producto;
+	private Producto productoRetorno;
 	private PrecioProducto precioProducto = new PrecioProducto();
 	private TarifaIva tarifaIva = new TarifaIva();
 	private TarifaIce tarifaIce = new TarifaIce();
@@ -94,6 +95,7 @@ public class ProductoFrm extends JInternalFrame {
 
 	public ProductoFrm() {
 		JFrame.setDefaultLookAndFeelDecorated(false);
+		producto = new Producto();
 		crearControles();
 		crearEventos();
 		cargarCombos();
@@ -258,11 +260,12 @@ public class ProductoFrm extends JInternalFrame {
 			return;
 		}
 		ProductoController productoController = new ProductoController();
-		if(productoController.getProducto(txtCodigo.getText())!=null){
+		if (productoController.getProducto(txtCodigo.getText()) != null) {
 			JOptionPane.showMessageDialog(null, "Código de producto ya está registrado, ingrese otro");
 			return;
-		};
-		
+		}
+		;
+
 		guardarProductoNuevo();
 		if (producto.getId() != null) {
 			Integer cantidadTipoPrecio = 0;
@@ -277,7 +280,10 @@ public class ProductoFrm extends JInternalFrame {
 			}
 			if (cantidadTipoPrecio == listaTipoPrecio.size()) {
 				JOptionPane.showMessageDialog(null, "Producto guardado correctamente");
+				productoRetorno=producto;
+				System.out.println("Producto a retornar: " + productoRetorno);
 				limpiarCampos();
+				dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Error al guardar precios del producto, revise los datos");
 				productoController.delete(producto.getId());
@@ -333,8 +339,8 @@ public class ProductoFrm extends JInternalFrame {
 			}
 		});
 		btnCancelar.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
 			}
 		});
 		categoriaProductoListaFrm.addConfirmListener(new ActionListener() {
@@ -365,10 +371,10 @@ public class ProductoFrm extends JInternalFrame {
 	}
 
 	private void crearControles() {
-		setBounds(100, 100, 650, 356);
+		setBounds(100, 100, 650, 371);
 		setTitle("Productos");
-		setClosable(true);
-		setIconifiable(true);
+		// setClosable(true);
+		// setIconifiable(true);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panelBotones = new JPanel();
@@ -612,6 +618,15 @@ public class ProductoFrm extends JInternalFrame {
 		scrollPane.setViewportView(tabla);
 		pnlConfigPrecios.setLayout(gl_pnlConfigPrecios);
 
+	}
+
+	public Producto getProducto() {
+		return productoRetorno;
+	}
+
+	public void addConfirmListener(ActionListener listener) {
+		btnGuardar.addActionListener(listener);
+		
 	}
 
 	private class CustomCellRenderer extends DefaultTableCellRenderer {
