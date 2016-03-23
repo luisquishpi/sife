@@ -19,7 +19,7 @@ public class PrincipalFrm extends JFrame {
     private JPanel contentPane;
     private JDesktopPane dpContenedor;
     TipoPrecioFrm tipoPrecioFrm;
-    CategoriaProductoFrm  categoriaProductoFrm;
+    CategoriaProductoMantenimientoFrm  categoriaProductoFrm;
     TipoClienteFrm tipoPersonaFrm;
     TipoIdentificacionPersonaFrm tipoIdentificacionPersonaFrm;
     CrearPersonaFrm crearPersonaFrm;
@@ -56,10 +56,10 @@ public class PrincipalFrm extends JFrame {
         mnProductos.add(mntmProductos);
         
         JMenuItem mntmTCategorias = new JMenuItem("Categorias");
-        mntmTCategorias.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+       mntmTCategorias.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
         		if(categoriaProductoFrm==null || categoriaProductoFrm.isClosed()){
-        			categoriaProductoFrm=new CategoriaProductoFrm();
+        			categoriaProductoFrm=new CategoriaProductoMantenimientoFrm();
                     dpContenedor.add(categoriaProductoFrm);
                     categoriaProductoFrm.show();
                 }
