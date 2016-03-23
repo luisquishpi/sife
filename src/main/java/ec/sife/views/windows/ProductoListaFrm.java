@@ -1,5 +1,4 @@
 package ec.sife.views.windows;
-
 import java.awt.EventQueue;
 
 import javax.swing.JDialog;
@@ -20,7 +19,6 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 public class ProductoListaFrm extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtBuscar;
